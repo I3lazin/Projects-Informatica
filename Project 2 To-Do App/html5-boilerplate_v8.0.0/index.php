@@ -108,7 +108,6 @@ $resultcheck = mysqli_num_rows($result);
         <!-- inbetween this -->
       </tr> 
     </thead>
-    <?php if ($result->num_rows > 0): ?>
       <?php while($row = $result->fetch_assoc()): ?>
         <tr>
           <!-- Edit here for extra rows --> 
@@ -118,11 +117,10 @@ $resultcheck = mysqli_num_rows($result);
           <!-- inbetween this -->
         </tr>
       <?php endwhile;?>
-    <?php endif;?>
 </table>
 
 <!-- Creates "Create new employee area" (DON'T EDIT THIS!)-->
-<h3>Create new employee:</h3>
+<h3>Create new task</h3>
 <table class="table table-bordered">
   <form action="includes/insert.php" method="post">
     <thead class="table-dark">
@@ -135,8 +133,8 @@ $resultcheck = mysqli_num_rows($result);
       </tr>
     </thead>
       <!-- Edit here for extra rows --> 
-      <td><input type="text" name="first_name" placeholder="1, 2, 3, 4, 5, etc."/></td>
-      <td><input type="text" name="last_name" placeholder="YYYY-MM-DD"/></td>
+      <td><input type="text" name="what to do" placeholder="1, 2, 3, 4, 5, etc."/></td>
+      <td><input type="date" name="deadline"/></td>
       <td><select name="department">
             <option value="">None</option>
             <option value="0">Wiskunde</option>
@@ -151,7 +149,7 @@ $resultcheck = mysqli_num_rows($result);
       <tr>
         <td></td>
         <td></td>
-        <td><input type="submit" value="Creëer nieuwe employee"/></td>
+        <td><input type="submit" value="Create new task"/></td>
         
       </tr>
   </form>
@@ -184,7 +182,7 @@ $resultcheck2 = mysqli_num_rows($result2);
             <?php if ($result2->num_rows > 0):?>
               <?php while($row2 = $result2->fetch_assoc()):?>
                 <option value="<?php echo $row2['employee_id']?>"><?php echo $row2['first_name']." ".$row2['last_name'] ?></option>
-              <?php endwhile;?>  
+              <?php endwhile;?> 
             <?php endif;?>
           </select><br/>
         </td>

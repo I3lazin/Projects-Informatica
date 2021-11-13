@@ -131,7 +131,6 @@ $resultcheck = mysqli_num_rows($result);
         <!-- inbetween this -->
       </tr> 
     </thead>
-    <?php if ($result->num_rows > 0): ?>
       <?php while($row = $result->fetch_assoc()): ?>
         <tr>
           <!-- Edit here for extra rows --> 
@@ -142,7 +141,6 @@ $resultcheck = mysqli_num_rows($result);
           <!-- inbetween this -->
         </tr>
       <?php endwhile;?>
-    <?php endif;?>
 </table>
 
 <!-- Creates "Create new employee area" (DON'T EDIT THIS!)-->
@@ -205,11 +203,9 @@ $resultcheck2 = mysqli_num_rows($result2);
         <!-- Edit here for extra rows --> 
         <td>
           <select name="employee_id_edit">
-            <?php if ($result2->num_rows > 0):?>
               <?php while($row2 = $result2->fetch_assoc()):?>
                 <option value="<?php echo $row2['employee_id']?>"><?php echo $row2['first_name']." ".$row2['last_name'] ?></option>
               <?php endwhile;?>  
-            <?php endif;?>
           </select><br/>
         </td>
         <td><input type="text" name="first_name_edit"/></td>
@@ -255,11 +251,9 @@ $resultcheck3 = mysqli_num_rows($result3);
     </thead>
       <td>
         <select name="employee_del">
-          <?php if ($result3->num_rows > 0):?>
             <?php while($row3 = $result3->fetch_assoc()):?>
               <option value="<?php echo $row3['employee_id']?>"><?php echo $row3['first_name']." ".$row3['last_name'] ?></option>
             <?php endwhile;?>  
-          <?php endif;?>
         </select>
         <input type="submit" value="Delete employee"/>
       </td>  
