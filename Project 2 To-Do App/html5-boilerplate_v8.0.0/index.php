@@ -91,7 +91,7 @@ include_once "includes/dbh.php";
 
 <?php
 // Used to create table (Edit $sql for different output)
-$sql= "SELECT * FROM `planning`;";
+$sql= "SELECT * FROM `tasks`;";
 $result = mysqli_query($conn,$sql);
 $resultcheck = mysqli_num_rows($result);
 ?>
@@ -102,18 +102,20 @@ $resultcheck = mysqli_num_rows($result);
     <thead class="table-dark">
       <tr>
         <!-- Edit here for extra columns -->
-        <th>What to do</th>
-        <th>Deadline</th>
-        <th>Subject-id</th>
+        <th width="100">Task</th>
+        <th>Description</th>
+        <th width="100">Category</th>
+        <th width="10">Finished?</th>
         <!-- inbetween this -->
       </tr> 
     </thead>
       <?php while($row = $result->fetch_assoc()): ?>
         <tr>
           <!-- Edit here for extra rows --> 
-          <td width="30"><?php echo $row['What-to-do'] ?></td>
-          <td width="100"><?php echo $row['Date-to-be-finished']?></td>
-          <td width="100"><?php echo $row['subject-id']?></td>
+          <td width="30"><?php echo $row['Task_name'] ?></td>
+          <td width="100"><?php echo $row['Task_description']?></td>
+          <td><?php echo $row['Category_id']?></td>
+          <td width="10"><input type="checkbox"/></td>
           <!-- inbetween this -->
         </tr>
       <?php endwhile;?>
@@ -126,24 +128,20 @@ $resultcheck = mysqli_num_rows($result);
     <thead class="table-dark">
       <tr>
         <!-- Edit here for extra columns --> 
-        <th>Which exercises to do</th>
-        <th>Deadline</th>
-        <th>Subject-id</th>
+        <th>Task name</th>
+        <th>Description</th>
+        <th>Catgory</th>
         <!-- inbetween this -->
       </tr>
     </thead>
       <!-- Edit here for extra rows --> 
-      <td><input type="text" name="what to do" placeholder="1, 2, 3, 4, 5, etc."/></td>
-      <td><input type="date" name="deadline"/></td>
-      <td><select name="department">
+      <td><input type="text" name="Task" placeholder="1, 2, 3, 4, 5, etc."/></td>
+      <td><input type="text" name="Description"/></td>
+      <td><select name="Category">
             <option value="">None</option>
-            <option value="0">Wiskunde</option>
-            <option value="1">Informatica</option>
-            <option value="2">Scheikunde</option>
-            <option value="3">Nederlands</option>
-            <option value="4">Natuurkunde</option>
-            <option value="5">English IB</option>
-            <option value="6">Economie</option>
+            <option value="1">School Homework</option>
+            <option value="2">Household</option>
+            <option value="3">Leisure</option>
       </select><br/></td>
       <!-- inbetween this -->
       <tr>
