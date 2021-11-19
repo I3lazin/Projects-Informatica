@@ -91,7 +91,8 @@ include_once "includes/dbh.php";
 
 <?php
 // Used to create table (Edit $sql for different output)
-$sql= "SELECT * FROM `tasks`;";
+$sql= "SELECT Task_id, Task_name, Task_description, Category 
+       FROM `tasks` LEFT JOIN categories ON tasks.Category_id = categories.Category_id;";
 $result = mysqli_query($conn,$sql);
 $resultcheck = mysqli_num_rows($result);
 ?>
@@ -114,7 +115,7 @@ $resultcheck = mysqli_num_rows($result);
           <!-- Edit here for extra rows --> 
           <td width="30"><?php echo $row['Task_name'] ?></td>
           <td width="100"><?php echo $row['Task_description']?></td>
-          <td><?php echo $row['Category_id']?></td>
+          <td><?php echo $row['Category']?></td>
           <td width="10"><input type="checkbox"/></td>
           <!-- inbetween this -->
         </tr>
