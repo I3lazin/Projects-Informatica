@@ -103,6 +103,7 @@ $resultcheck = mysqli_num_rows($result);
     <thead class="table-dark">
       <tr>
         <!-- Edit here for extra columns -->
+        <th width="1">Task_id</th>
         <th width="100">Task</th>
         <th>Description</th>
         <th width="100">Category</th>
@@ -113,13 +114,16 @@ $resultcheck = mysqli_num_rows($result);
       <?php while($row = $result->fetch_assoc()): ?>
         <tr>
           <!-- Edit here for extra rows --> 
+          <td width="30"><?php echo $row['Task_id'] ?></td>
           <td width="30"><?php echo $row['Task_name'] ?></td>
           <td width="100"><?php echo $row['Task_description']?></td>
           <td><?php echo $row['Category']?></td>
           <td width="10">
             <form method="POST" action="?">
-              <input id="<?php echo $row['Task_id']?>" name="checked[]" type="checkbox" onchange="this.form.submit(); this.checkbox.checked" /></td>
+              <input name="checked[<?php echo $row['Task_id']?>]" type="checkbox" onchange="this.form.submit()"/>
             </form>
+            <?php print_r($_POST['checked']) ?>
+          </td>
           <!-- inbetween this -->
         </tr>
       <?php endwhile;?>
