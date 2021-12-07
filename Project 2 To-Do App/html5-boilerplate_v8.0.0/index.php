@@ -116,7 +116,10 @@ $resultcheck = mysqli_num_rows($result);
           <td width="30"><?php echo $row['Task_name'] ?></td>
           <td width="100"><?php echo $row['Task_description']?></td>
           <td><?php echo $row['Category']?></td>
-          <td width="10"><input type="checkbox"/></td>
+          <td width="10">
+            <form method="POST" action="?">
+              <input id="<?php echo $row['Task_id']?>" name="checked[]" type="checkbox" onchange="this.form.submit(); this.checkbox.checked" /></td>
+            </form>
           <!-- inbetween this -->
         </tr>
       <?php endwhile;?>
@@ -131,7 +134,7 @@ $resultcheck = mysqli_num_rows($result);
         <!-- Edit here for extra columns --> 
         <th>Task name</th>
         <th>Description</th>
-        <th>Catgory</th>
+        <th>Category</th>
         <!-- inbetween this -->
       </tr>
     </thead>
@@ -155,10 +158,11 @@ $resultcheck = mysqli_num_rows($result);
 </table>
 
 <?php
-// Shows first and last name in first select clause (DON'T EDIT THIS!)
+/* Shows first and last name in first select clause (DON'T EDIT THIS!)
 $sql5= "SELECT employee_id, first_name, last_name FROM employees ORDER BY employee_id;";
 $result2 = mysqli_query($conn,$sql5);
 $resultcheck2 = mysqli_num_rows($result2);
+*/
 ?>
 
 <!-- Creates "Edit employee:" area (DON'T EDIT THIS!)-->
@@ -211,10 +215,11 @@ $resultcheck2 = mysqli_num_rows($result2);
 </table>
 
 <?php
-// Shows first and last name in first select clause (DON'T EDIT THIS!)
+/* Shows first and last name in first select clause (DON'T EDIT THIS!)
 $sql6= "SELECT employee_id, first_name, last_name FROM employees ORDER BY employee_id;";
 $result3 = mysqli_query($conn,$sql6);
 $resultcheck3 = mysqli_num_rows($result3);
+*/
 ?>
 
 <!-- Creates "Delete employee:" area (DON'T EDIT THIS!) -->
