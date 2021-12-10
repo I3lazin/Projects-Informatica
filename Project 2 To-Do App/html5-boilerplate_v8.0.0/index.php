@@ -121,8 +121,11 @@ $resultcheck = mysqli_num_rows($result);
           <td><?php echo $row['Category']?></td>
           <td width="10">
             <form method="POST" action="?">
-              <input type="checkbox" name="status[]" value="<?php echo $row['Task_id']?>" onclick="copycheck('from','to')"/>
+              <input type="checkbox" name="status" value="<?php echo $row['Task_id']?>" onchange="this.form.submit();" onclick="copycheck('from','to')"/>
             </form>
+            <?php if (isset($_POST['status'])){
+            echo $_POST['status'];  
+            }?>
           </td>
           <!-- inbetween this -->
         </tr>
