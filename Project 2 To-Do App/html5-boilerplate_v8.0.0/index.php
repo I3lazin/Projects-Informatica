@@ -1,5 +1,6 @@
 <?php
 include_once "includes/dbh.php";
+include_once "includes/Javascript.php";
 ?>  
 
 <!DOCTYPE html>
@@ -103,7 +104,7 @@ $resultcheck = mysqli_num_rows($result);
     <thead class="table-dark">
       <tr>
         <!-- Edit here for extra columns -->
-        <th width="1">Task_id</th>
+        <th width="30">Task_id</th>
         <th width="100">Task</th>
         <th>Description</th>
         <th width="100">Category</th>
@@ -120,9 +121,8 @@ $resultcheck = mysqli_num_rows($result);
           <td><?php echo $row['Category']?></td>
           <td width="10">
             <form method="POST" action="?">
-              <input name="checked[<?php echo $row['Task_id']?>]" type="checkbox" onchange="this.form.submit()"/>
+              <input type="checkbox" name="status[]" value="<?php echo $row['Task_id']?>" onclick="copycheck('from','to')"/>
             </form>
-            <?php print_r($_POST['checked']) ?>
           </td>
           <!-- inbetween this -->
         </tr>
@@ -247,6 +247,20 @@ $resultcheck3 = mysqli_num_rows($result3);
       </td>  
   </form>
 </table> 
+
+
+
+
+
+
+
+  <script>
+  window.onload = function () {
+      document.getElementById("Checkboxes").onclick = function(){
+          alert("Yahooo");
+      }
+  }
+  </script> 
 
 
 
