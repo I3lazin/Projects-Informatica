@@ -1,7 +1,6 @@
-<html>
 <?php
-        if(document.getElementByName('status').checked==true) 
-            {  
+        if($_POST['status']==true) 
+            {                   
                 require "dbh.php";
                 
                 $var1 = $_POST['status'];
@@ -9,14 +8,14 @@
                            WHERE Task_id = '$var1';";
 
                 if ($conn->query($sql001) === TRUE) {
-                header('Location: ../html5-boilerplate_v8.0.0/index.php');
+                header('Location: ../index.php');
                 } else {
                 echo "Error: " . $sql001 . "<br>" . $conn->error;
                 }      
                 $conn->close(); 
             }
-        else
-            {
+        elseif(empty($_POST['status'])==true)
+            {   
                 require "dbh.php";
 
                 $var1 = $_POST['status'];
@@ -24,12 +23,9 @@
                            WHERE Task_id = '$var1';";
 
                 if ($conn->query($sql002) === TRUE) {
-                header('Location: ../html5-boilerplate_v8.0.0/index.php');
+                header('Location: ../index.php');
                 } else {
                 echo "Error: " . $sql002 . "<br>" . $conn->error;
                 }      
                 $conn->close(); 
             }
-
-?>
-</html>

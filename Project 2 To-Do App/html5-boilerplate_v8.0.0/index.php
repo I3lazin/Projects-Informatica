@@ -1,6 +1,5 @@
 <?php
 include_once "includes/dbh.php";
-include_once "includes/Javascript.php";
 ?>  
 
 <!DOCTYPE html>
@@ -92,7 +91,7 @@ include_once "includes/Javascript.php";
 
 <?php
 // Used to create table (Edit $sql for different output)
-$sql= "SELECT Task_id, Task_name, Task_description, Category 
+$sql= "SELECT Task_id, Task_name, Task_description, Finished, Category  
        FROM `tasks` LEFT JOIN categories ON tasks.Category_id = categories.Category_id;";
 $result = mysqli_query($conn,$sql);
 $resultcheck = mysqli_num_rows($result);
@@ -120,9 +119,9 @@ $resultcheck = mysqli_num_rows($result);
           <td width="100"><?php echo $row['Task_description']?></td>
           <td><?php echo $row['Category']?></td>
           <td width="10">
-            <form method="POST" action="Javascript.php" onsubmit="">
-              <input type="checkbox" name="status" value="<?php echo $row['Task_id']?>" onchange="this.form.submit();" onclick="changefinishedstatus()"/>    
-            </form>            
+            <form method="POST" action="/Project 2 To-Do App/html5-boilerplate_v8.0.0/includes/Javascript.php" onsubmit="">
+              <input type="checkbox" name="status" value="<?php echo $row['Task_id']?>" onchange="this.form.submit();" <?php if($row['Finished'] == 1) print("checked")?> />           
+            </form>      
           </td>
           <!-- inbetween this -->
         </tr>
@@ -250,10 +249,6 @@ $resultcheck3 = mysqli_num_rows($result3);
 
 
 
-
-
-
-
   <script>
   window.onload = function () {
       document.getElementById("Checkboxes").onclick = function(){
@@ -261,7 +256,7 @@ $resultcheck3 = mysqli_num_rows($result3);
       }
   }
   </script> 
-
+              
 
 
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
