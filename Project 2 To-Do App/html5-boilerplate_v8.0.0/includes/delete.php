@@ -1,7 +1,7 @@
 <?php
 require "dbh.php";
 
-$sql4 = "DELETE FROM employees WHERE `employee_id` = ('".$_POST['employee_del']."');";
+$sql4 = "DELETE FROM tasks WHERE `Task_id` = '".$_POST['task_del']."';";
 
 if ($conn->query($sql4) === TRUE) {
   header('Location: ../index.php');

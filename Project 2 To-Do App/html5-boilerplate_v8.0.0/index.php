@@ -92,7 +92,8 @@ include_once "includes/dbh.php";
 <?php
 // Used to create table (Edit $sql for different output)
 $sql= "SELECT Task_id, Task_name, Task_description, Finished, Category  
-       FROM `tasks` LEFT JOIN categories ON tasks.Category_id = categories.Category_id;";
+       FROM `tasks` LEFT JOIN categories ON tasks.Category_id = categories.Category_id
+       ORDER BY Finished DESC;";
 $result = mysqli_query($conn,$sql);
 $resultcheck = mysqli_num_rows($result);
 ?>
@@ -103,7 +104,6 @@ $resultcheck = mysqli_num_rows($result);
     <thead class="table-dark">
       <tr>
         <!-- Edit here for extra columns -->
-        <th width="30">Task_id</th>
         <th width="100">Task</th>
         <th>Description</th>
         <th width="100">Category</th>
@@ -114,7 +114,6 @@ $resultcheck = mysqli_num_rows($result);
       <?php while($row = $result->fetch_assoc()): ?>
         <tr>
           <!-- Edit here for extra rows --> 
-          <td width="30"><?php echo $row['Task_id'] ?></td>
           <td width="30"><?php echo $row['Task_name'] ?></td>
           <td width="100"><?php echo $row['Task_description']?></td>
           <td><?php echo $row['Category']?></td>
@@ -162,15 +161,14 @@ $resultcheck = mysqli_num_rows($result);
 </table>
 
 <?php
-/* Shows first and last name in first select clause (DON'T EDIT THIS!)
-$sql5= "SELECT employee_id, first_name, last_name FROM employees ORDER BY employee_id;";
+// Shows first and last name in first select clause (DON'T EDIT THIS!)
+$sql5= "SELECT Task_id, Task_name, Task_description FROM tasks ORDER BY Task_id";
 $result2 = mysqli_query($conn,$sql5);
 $resultcheck2 = mysqli_num_rows($result2);
-*/
 ?>
 
 <!-- Creates "Edit employee:" area (DON'T EDIT THIS!)-->
-<h3>Edit employee:</h3>
+<h3>Edit task:</h3>
 <table class="table table-bordered">
   <form action="includes/edit.php" method="post">
     <thead class="table-dark">
@@ -178,33 +176,29 @@ $resultcheck2 = mysqli_num_rows($result2);
         <!-- Edit here for extra columns --> 
         <th>What Task to edit:</th>
         <th>Edit Task:</th>
-        <th>Edit Deadline:</th>
-        <th>Edit :</th>
+        <th>Edit Description:</th>
+        <th>Edit:</th>
         <!-- inbetween this -->
       </tr>
     </thead>
         <!-- Edit here for extra rows --> 
         <td>
-          <select name="employee_id_edit">
+          <select name="Task_id_edit">
             <?php if ($result2->num_rows > 0):?>
               <?php while($row2 = $result2->fetch_assoc()):?>
-                <option value="<?php echo $row2['employee_id']?>"><?php echo $row2['first_name']." ".$row2['last_name'] ?></option>
+                <option value="<?php echo $row2['Task_id']?>"><?php echo $row2['Task_name'].": ".$row2['Task_description'] ?></option>
               <?php endwhile;?> 
             <?php endif;?>
           </select><br/>
         </td>
-        <td><input type="text" name="first_name_edit"/></td>
-        <td><input type="text" name="last_name_edit"/></td>
+        <td><input type="text" name="Task_name_edit"/></td>
+        <td><input type="text" name="Task_description_edit"/></td>
         <td>
-          <select name="department_edit">
+          <select name="category_edit">
               <option value="">None</option>
-              <option value="110">Accounting</option>
-              <option value="10">Administration</option>
-              <option value="90">Executive</option>
-              <option value="60">IT</option>
-              <option value="20">Marketing</option>
-              <option value="80">Sales</option>
-              <option value="50">Shipping</option>
+              <option value="1">School_HW</option>
+              <option value="2">Householding</option>
+              <option value="3">Leisure</option>
           </select><br/>
         </td>
         <!-- inbetween this -->
@@ -213,21 +207,20 @@ $resultcheck2 = mysqli_num_rows($result2);
           <td></td>
           <td></td>
           <td></td>
-          <td><input type="submit" value="Edit employee"/></td>
+          <td><input type="submit" value="Edit task"/></td>
         </tr>
   </form>
 </table>
 
 <?php
-/* Shows first and last name in first select clause (DON'T EDIT THIS!)
-$sql6= "SELECT employee_id, first_name, last_name FROM employees ORDER BY employee_id;";
+//Shows first and last name in first select clause (DON'T EDIT THIS!)
+$sql6= "SELECT Task_id, Task_name, Task_description FROM tasks ORDER BY Task_id;";
 $result3 = mysqli_query($conn,$sql6);
 $resultcheck3 = mysqli_num_rows($result3);
-*/
 ?>
 
 <!-- Creates "Delete employee:" area (DON'T EDIT THIS!) -->
-<h3>Delete employee:</h3>
+<h3>Delete task:</h3>
 <table class="table table-bordered">   
   <form action="includes/delete.php" method="post">
     <thead class="table-dark">
@@ -236,14 +229,14 @@ $resultcheck3 = mysqli_num_rows($result3);
       </tr>
     </thead>
       <td>
-        <select name="employee_del">
+        <select name="task_del">
           <?php if ($result3->num_rows > 0):?>
             <?php while($row3 = $result3->fetch_assoc()):?>
-              <option value="<?php echo $row3['employee_id']?>"><?php echo $row3['first_name']." ".$row3['last_name'] ?></option>
+              <option value="<?php echo $row3['Task_id']?>"><?php echo $row3['Task_name'].": ".$row3['Task_description'] ?></option>
             <?php endwhile;?>  
           <?php endif;?>
         </select>
-        <input type="submit" value="Delete employee"/>
+        <input type="submit" value="Delete task"/>
       </td>  
   </form>
 </table> 

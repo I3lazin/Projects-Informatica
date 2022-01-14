@@ -10,7 +10,6 @@
             $sql001 = "UPDATE tasks SET Finished = 1 
                        WHERE Task_id = '$var3';";
             if ($conn->query($sql001) === TRUE) {
-                sleep(0.5);
                 header('Location: ../index.php');
             } else {
                 echo "Error: " . $sql001 . "<br>" . $conn->error;
@@ -23,7 +22,6 @@
             $sql002 = "UPDATE tasks SET Finished = 0 
                        WHERE Task_id = '$var3';";
         if ($conn->query($sql002) === TRUE) {
-                sleep(0.5);
                 header('Location: ../index.php');
             } else {
                 echo "Error: " . $sql002 . "<br>" . $conn->error;
