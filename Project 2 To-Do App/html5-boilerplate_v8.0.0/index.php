@@ -120,7 +120,8 @@ $resultcheck = mysqli_num_rows($result);
           <td><?php echo $row['Category']?></td>
           <td width="10">
             <form method="POST" action="/Project 2 To-Do App/html5-boilerplate_v8.0.0/includes/Javascript.php" onsubmit="">
-              <input type="checkbox" class="checkboxasdf" id="<?php echo $row['Task_id']?>" name="status"  onchange="" <?php if($row['Finished'] == 1) print("checked")?> />           
+              <input type="hidden"   value="0_<?php echo $row['Task_id']?>" name="status">
+              <input type="checkbox" value="1_<?php echo $row['Task_id']?>" name="status" <?php if($row['Finished'] == 0) print("checked")?> onchange="this.form.submit()"/>           
             </form>      
           </td>
           <!-- inbetween this -->
