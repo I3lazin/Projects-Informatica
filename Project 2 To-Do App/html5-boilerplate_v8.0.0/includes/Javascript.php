@@ -14,7 +14,7 @@
                 }      
                 $conn->close(); 
             }
-        elseif(empty($_POST['status'])==true)
+        else
             {   
                 require "dbh.php";
 
